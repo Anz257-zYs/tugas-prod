@@ -1,4 +1,12 @@
 array = JSON.parse(localStorage.getItem("menu")) || [];
+
+        let totalkeseluruhan = array.reduce((total, item) => total + item.harga, 0);
+        let totalformatted = totalkeseluruhan.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+        let totalElement = document.getElementById("total");
+        if (totalElement) {
+            totalElement.textContent = `Total Keseluruhan: ${totalformatted}`;
+        }
+
 function tambahdata() {
     
     let nama = document.getElementById("nama").value;
@@ -8,7 +16,7 @@ function tambahdata() {
     if(nama == "" || harga == "" || jenis == "" ) {
         alert("mohon lengkapi input terlebih dahulu!")
     } else {
-       
+
     let hargaformatted = Number(harga);
 
     let data = {
@@ -18,6 +26,7 @@ function tambahdata() {
     };
     array.push(data);
 
+    console.log(array);
     localStorage.setItem("menu", JSON.stringify(array));
     tampilkanData();
 }}
