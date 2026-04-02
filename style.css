@@ -226,3 +226,21 @@ b:hover {
     font-weight: 700;
     cursor : pointer;
 }
+
+.totalharga {
+    background-color: #fff1e6;
+    padding : 10px;
+    border-radius: 5px;
+    color : black;
+    font-weight: 700;
+    transition : 0.3s;
+    margin-top: 20px;
+}
+
+.totalharga:hover {
+    background-color: #e68550;
+    color : white;
+    font-size : 20px;
+    font-weight: 700;
+    cursor : pointer;
+}
