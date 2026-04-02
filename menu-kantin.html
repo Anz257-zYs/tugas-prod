@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <header class="hea">
+        <p id="warna">ICanteen<b>Smart</b></p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu-kantin.html">Menu Kantin</a></li>
+            </ul>
+        </nav>
+         <h4 class="jam" id="j"></h4>
+    </header>
+    <div class="gooning">
+    <div class="container">
+    <div class="input">
+        <h1 id="warna">Data menu</h1>
+        silahkan masukkan daftar makanan yang akan di masukan ke menu
+        <input type="text" class="form" id="nama" placeholder="Nama Makanan/Minuman">
+        <input type="number" class="form" id="harga" placeholder="Harga">
+        <input type="text" class="form" id="jenis" placeholder="makanan berat/makanan ringan">
+        <div class="button-input">
+    <button class="add-button"onclick="tambahdata()">Tambah Data</button>
+    <button class="delete-button" onclick="hapusdata()">Hapus Data</button>
+    <button class="edit-button" onclick="editdata()">Ubah Data</button>
+    </div>
+    </div>
+    <div class="div-menu">
+        <div>
+            <h1>menu</h1>
+        </div>
+        <div class="menu-section" id="output"></div>
+      </div>
+    </div>
+    </div>
+</body>
+</html>
