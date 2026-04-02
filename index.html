@@ -7,51 +7,42 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
 </head>
 <body>
-    <nav>
-        <h1 id="warna">ICanteen<b>Smart</b></h1>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="menu-kantin.html">Menu Kantin</a></li>
-        </ul>
-        <h4 class="jam" id="j"></h4>
-    </nav>
-    <article>
-        <div class="description">
-        <div class="pengertian">
-            <div>
-            <div class="welcome">
-            <h2 id="warna">Selamat<b>datang!</b></h2>
-            </div>
-        <p>selamat datang di halaman utama ICanteenSmart! kami menyiapkan banyak makanan lezat dengan banyak variasi,
-        kami juga menyediakan minuman segar untuk menemani makanan anda
-    <br><br>
-    disini anda bisa menemukan berbagai macam makanan yang lezat dan menggugah selera</p>
-        <img class="menu-image" src="cafe-photos.jpg" alt="Menu Image">
-        </div>
+    <header class="hea">
+        <p id="warna">ICanteen<b>Smart</b></p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu-kantin.html">Menu Kantin</a></li>
+            </ul>
+        </nav>
+         <h4 class="jam" id="j"></h4>
+    </header>
+    <div class="gooning">
+    <div class="container">
+    <div class="input">
+        <h1 id="warna">Data menu</h1>
+        silahkan masukkan daftar makanan yang akan di masukan ke menu
+        <input type="text" class="form" id="nama" placeholder="Nama Makanan/Minuman">
+        <input type="number" class="form" id="harga" placeholder="Harga">
+        <input type="text" class="form" id="jenis" placeholder="makanan berat/makanan ringan">
+        <div class="button-input">
+    <button class="add-button"onclick="tambahdata()">Tambah Data</button>
+    <button class="delete-button" onclick="hapusdata()">Hapus Data</button>
+    <button class="edit-button" onclick="editdata()">Ubah Data</button>
     </div>
-    </article>
-    <br>
-    <article class="menu-section">
-        <div class="menu-description">
-            <p>ini menu menu yang baru kita buat!</p>
+    </div>
+    <div class="div-menu">
+        <div>
+            <h1>menu</h1>
         </div>
-        <div class="menu-card" id="output"></div>
-    </article>
-    <br>
-
-    <article>
-        <div class="contact">
-            <h1 id="warna">Hubungi<b>Kami!</b></h1>
-            <p>Jika Anda memiliki pertanyaan, saran, atau ingin memberikan umpan balik tentang ICanteenSmart, jangan ragu untuk menghubungi kami. Kami sangat menghargai masukan dari pengguna kami dan berkomitmen untuk memberikan layanan terbaik.</p>
-            <p>Email: <a class="contact-link" href="https://chat.google.com/room/AAQAnTVnSFc?cls=7" target="_blank">ICanteenSmart Chat</a></p>
-        </div>
-    </article>
-    <footer>
-        <p>&copy; 2024 ICanteenSmart. All rights reserved.</p>
-    </footer>
+        <div class="menu-section" id="output"></div>
+        <div class="totalharga" id="total"></div>
+      </div>
+    </div>
+    </div>
 </body>
 </html>
