@@ -7,6 +7,30 @@ array = JSON.parse(localStorage.getItem("menu")) || [];
             totalElement.textContent = `Total Keseluruhan: ${totalformatted}`;
         }
 
+function tampilkanDatapelanggan() {
+    let output = "";
+    let el = document.getElementById("output2");
+    
+    if (!el) return;
+
+    array.forEach((item) => {
+        let hargaFormatted = item.harga.toLocaleString('id-ID', { 
+            style: 'currency', currency: 'IDR', minimumFractionDigits: 0 
+        });
+
+        output += `
+            <div class="menu-item">
+                <h4>${item.nama}</h4>
+                <p>${hargaFormatted}</p>
+                <p><em>${item.jenis}</em></p>
+            </div>`;
+    });
+    
+    el.innerHTML = output;
+}
+
+tampilkanDatapelanggan();
+
 function tambahdata() {
     
     let nama = document.getElementById("nama").value;
@@ -28,48 +52,44 @@ function tambahdata() {
 
     console.log(array);
     localStorage.setItem("menu", JSON.stringify(array));
-    tampilkanData();
+    simpan();
 }}
 
-function hapusdata() {
-    let comfirmdelete = confirm("Apakah Anda yakin ingin menghapus semua data?");
+function hapusdata(index) {
+    let comfirmdelete = confirm("Apakah Anda yakin ingin menghapus data ini?");
 
     if (!comfirmdelete) {
         return;
     } else {
-        array = [];
-        localStorage.removeItem("menu");
-        document.getElementById("output").innerHTML = "";
+        array.splice(index, 1);
+        localStorage.setItem("menu", JSON.stringify(array));
+        total();
+        simpan();
     }
 }
 
 if (document.getElementById("output")) {
-    tampilkanData();
+    simpan();
 }
 
-function editdata() {
-    let daftermenu = JSON.parse(localStorage.getItem("menu")) || [];
+function editdata(index) {
+    let item = array[index];
 
-    let teledit = prompt("Masukkan nama makanan yang ingin diedit:");
-    let item = daftermenu.find(item => item.nama === teledit);
+    let namabaru = prompt("Masukkan nama makanan baru:", item.nama);
+    let hargabaru = prompt("Masukkan harga baru:", item.harga);
+    let jenisbaru = prompt("Masukkan jenis baru: (makanan berat/makanan ringan)", item.jenis);
 
-    if (!item) {
-        alert("Makanan tidak ditemukan");
-        return;
-    }
+    if (namabaru && hargabaru && jenisbaru) {
+        array[index] = {
+            nama: namabaru,
+            harga: Number(hargabaru),
+            jenis: jenisbaru
+        };
+        
 
-    let nama = prompt("Masukkan nama makanan baru:", item.nama);
-    let harga = prompt("Masukkan harga baru:", item.harga);
-    let jenis = prompt("Masukkan jenis baru: (makanan berat/makanan ringan)", item.jenis);
-
-    if (nama && harga && jenis) {
-        item.nama = nama;
-        item.harga = parseInt(harga);
-        item.jenis = jenis;
-
-        localStorage.setItem("menu", JSON.stringify(daftermenu));
-
-        tampilkanData();
+        localStorage.setItem("menu", JSON.stringify(array));
+        simpan();
+        total();
     } else {
         alert("Semua prompt harus diisi");
         return;
@@ -78,19 +98,52 @@ function editdata() {
     
 function tampilkanData() {
     let output = "";
-    let array =JSON.parse(localStorage.getItem("menu")) || [];
+    let output2 = "";
+    
     array.forEach((item, index) => {
         let harga = item.harga.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
 
-        output += `
-        <div class="menu-item">
-        <p>
+        let kontenbase = `
         <h4>${item.nama}</h4>
         <p>${harga}</p>
-        <p>${item.jenis}</p>
-        </p></div>`
+        <p><em>${item.jenis}</em></p>
+        `
+
+        output += `
+        <div class="menu-item">
+        ${kontenbase}
+        <button class="delete-button" onclick="hapusdata(${index})">Hapus</button>
+        <button class="edit-button" onclick="editdata(${index})">Edit</button>
+        </div>`;
+
+        output2 += `
+        <div class="menu-item">
+        ${kontenbase}
+        </div>`;
     });
-    document.getElementById("output").innerHTML = output;
+
+    let outputtombol = document.getElementById("output");
+    if (outputtombol) {
+        outputtombol.innerHTML = output;
+    }
+    let outputkos = document.getElementById("output2");
+    if (outputkos) {
+        outputkos.innerHTML = output2;
+    }
+}
+
+function total() {
+    let totalkeseluruhan = array.reduce((total, item) => total + item.harga, 0);
+        let totalformatted = totalkeseluruhan.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+        let totalElement = document.getElementById("total");
+        if (totalElement) {
+            totalElement.textContent = `Total Keseluruhan: ${totalformatted}`;
+        }
+}
+
+function simpan() {
+    localStorage.setItem("menu", JSON.stringify(array));
+    tampilkanData();
 }
 
 document.getElementById("warna").addEventListener("mouseover", function() {
